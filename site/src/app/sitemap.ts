@@ -1,18 +1,14 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://janhoon.com",
+      url: "https://deanvz.com",
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
       priority: 1,
-    },
-    {
-      url: "https://janhoon.com/blog",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly",
-      priority: 0.8,
     },
   ];
 }
