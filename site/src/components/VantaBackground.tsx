@@ -2,16 +2,35 @@
 
 import { useEffect, useRef } from 'react';
 
+interface VantaEffect {
+  destroy: () => void;
+}
+
+interface VantaHaloOptions {
+  el: HTMLElement;
+  mouseControls: boolean;
+  touchControls: boolean;
+  gyroControls: boolean;
+  minHeight: number;
+  minWidth: number;
+  amplitudeFactor?: number;
+  xOffset?: number;
+  yOffset?: number;
+  size?: number;
+}
+
 declare global {
   interface Window {
-    VANTA: any;
-    THREE: any;
+    VANTA: {
+      HALO: (options: VantaHaloOptions) => VantaEffect;
+    };
+    THREE: unknown;
   }
 }
 
 export default function VantaBackground() {
   const vantaRef = useRef<HTMLDivElement>(null);
-  const vantaEffect = useRef<any>(null);
+  const vantaEffect = useRef<VantaEffect | null>(null);
 
   useEffect(() => {
     // Load Three.js and Vanta.js scripts
