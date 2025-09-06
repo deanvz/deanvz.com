@@ -6,23 +6,21 @@ interface VantaEffect {
   destroy: () => void;
 }
 
-interface VantaHaloOptions {
+interface VantaNetOptions {
   el: HTMLElement;
-  mouseControls: boolean;
-  touchControls: boolean;
-  gyroControls: boolean;
-  minHeight: number;
-  minWidth: number;
-  amplitudeFactor?: number;
-  xOffset?: number;
-  yOffset?: number;
-  size?: number;
+  mouseControls?: boolean;
+  touchControls?: boolean;
+  gyroControls?: boolean;
+  minHeight?: number;
+  minWidth?: number;
+  scale?: number;
+  scaleMobile?: number;
 }
 
 declare global {
   interface Window {
     VANTA: {
-      HALO: (options: VantaHaloOptions) => VantaEffect;
+      NET: (options: VantaNetOptions) => VantaEffect;
     };
     THREE: unknown;
   }
@@ -47,10 +45,10 @@ export default function VantaBackground() {
         });
       }
 
-      // Load Vanta HALO effect
+      // Load Vanta NET effect
       if (!window.VANTA) {
         const vantaScript = document.createElement('script');
-        vantaScript.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js';
+        vantaScript.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js';
         vantaScript.async = true;
         document.head.appendChild(vantaScript);
         
@@ -61,17 +59,15 @@ export default function VantaBackground() {
 
       // Initialize Vanta effect
       if (vantaRef.current && window.VANTA && !vantaEffect.current) {
-        vantaEffect.current = window.VANTA.HALO({
+        vantaEffect.current = window.VANTA.NET({
           el: vantaRef.current,
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
           minHeight: 200.00,
           minWidth: 200.00,
-          amplitudeFactor: 1.00,
-          xOffset: -0.30,
-          yOffset: 0.17,
-          size: 1.00
+          scale: 1.00,
+          scaleMobile: 1.00
         });
       }
     };
