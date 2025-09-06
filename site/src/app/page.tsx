@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import SocialLinks from "../components/SocialLinks";
 import VantaBackground from "../components/VantaBackground";
-import BlogPreview from "../components/BlogPreview";
 import Image from "next/image";
+import Link from "next/link";
 import profilePicture from "@/images/pfp.jpg";
 import {
   SiKubernetes,
@@ -14,7 +14,7 @@ import {
   SiGooglecloud,
   SiTerraform,
 } from "react-icons/si";
-import { FaCode, FaCertificate } from "react-icons/fa";
+import { FaCode, FaCertificate, FaBook } from "react-icons/fa";
 import { VscAzure } from "react-icons/vsc";
 import { Badge } from "@/components/ui/badge";
 
@@ -49,6 +49,7 @@ export default function Home() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
+                className="relative"
               >
                 <Image
                   src={profilePicture}
@@ -58,6 +59,23 @@ export default function Home() {
                   className="rounded-full shadow-lg w-[290px] h-[290px]"
                   priority
                 />
+                {/* Blog Icon */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                  className="absolute -top-2 -right-2"
+                >
+                  <Link href="/blog">
+                    <motion.div
+                      whileHover={{ scale: 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="bg-green-600 hover:bg-green-700 p-3 rounded-full shadow-lg cursor-pointer"
+                    >
+                      <FaBook className="w-6 h-6 text-white" />
+                    </motion.div>
+                  </Link>
+                </motion.div>
               </motion.div>
             </motion.div>
             <motion.h1
@@ -76,16 +94,6 @@ export default function Home() {
             >
               Cloud Native Director of Platform
             </motion.h2>
-            
-            {/* Blog Preview Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="mb-8"
-            >
-              <BlogPreview />
-            </motion.div>
           </div>
           <div className="w-full lg:w-1/3 pl-8">
             <motion.div

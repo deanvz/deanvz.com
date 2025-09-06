@@ -69,7 +69,7 @@ export default function VantaBackground() {
           minHeight: 200.00,
           minWidth: 200.00,
           amplitudeFactor: 1.00,
-          xOffset: 0.13,
+          xOffset: -0.30,
           yOffset: 0.17,
           size: 1.00
         });
