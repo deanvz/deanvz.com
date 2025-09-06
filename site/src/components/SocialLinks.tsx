@@ -15,7 +15,7 @@ export default function SocialLinks() {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-4 right-4 flex flex-col space-y-4"
+      className="fixed top-4 right-4 flex flex-col space-y-4 z-50 pointer-events-auto"
     >
       {socialLinks.map((link) => (
         <motion.a
@@ -25,7 +25,7 @@ export default function SocialLinks() {
           rel="noopener noreferrer"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
-          className="text-gray-100 hover:text-gray-300"
+          className="text-gray-100 hover:text-gray-300 cursor-pointer"
         >
           {link.icon}
         </motion.a>
