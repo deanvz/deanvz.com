@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { PostHogProvider } from "@/components/PosthogProvider";
+import { Analytics } from "@/components/Analytics";
 
 const jetbrainsMono = localFont({
   src: "./fonts/JetBrainsMono-Regular.woff2",
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${roboto.className} ${jetbrainsMono.variable} antialiased bg-gray-800 text-gray-100`}
       >
         <PostHogProvider>{children}</PostHogProvider>
+        <Analytics />
       </body>
     </html>
   );
