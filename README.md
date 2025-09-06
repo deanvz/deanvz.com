@@ -88,3 +88,4 @@ site/
 ---
 
 Built with ❤️ using modern web technologies and deployed on Cloudflare's edge network for optimal performance worldwide.
+# Test deployment with Google Analytics environment variable
