@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import SocialLinks from "../components/SocialLinks";
+import VantaBackground from "../components/VantaBackground";
 import Image from "next/image";
 import profilePicture from "@/images/pfp.jpg";
 import {
@@ -32,54 +32,10 @@ const otherSkills = [
   { name: "GCP", icon: <SiGooglecloud className="w-4 h-4" /> },
 ];
 
-// Floating particles for background animation
-const FloatingParticles = () => {
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  
-  useEffect(() => {
-    const updateWindowSize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    
-    updateWindowSize();
-    window.addEventListener('resize', updateWindowSize);
-    return () => window.removeEventListener('resize', updateWindowSize);
-  }, []);
-  
-  const particles = Array.from({ length: 50 }, (_, i) => i);
-  
-  if (windowSize.width === 0) return null;
-  
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle}
-          className="absolute w-1 h-1 bg-green-400 rounded-full opacity-30"
-          initial={{
-            x: Math.random() * windowSize.width,
-            y: Math.random() * windowSize.height,
-          }}
-          animate={{
-            x: Math.random() * windowSize.width,
-            y: Math.random() * windowSize.height,
-          }}
-          transition={{
-            duration: Math.random() * 20 + 10,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
-
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col relative">
-      <FloatingParticles />
+      <VantaBackground />
       <main className="flex-grow flex flex-col items-center justify-center p-4 relative z-10">
         <div className="w-full max-w-6xl flex lg:flex-row items-center flex-col">
           <div className="w-full md:w-2/3 pr-8 relative">
