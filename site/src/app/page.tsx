@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import SocialLinks from "../components/SocialLinks";
 import VantaBackground from "../components/VantaBackground";
+import BlogPreview from "../components/BlogPreview";
 import Image from "next/image";
 import profilePicture from "@/images/pfp.jpg";
 import {
@@ -37,8 +38,8 @@ export default function Home() {
     <div className="min-h-screen flex flex-col relative">
       <VantaBackground />
       <main className="flex-grow flex flex-col items-center justify-center p-4 relative z-10">
-        <div className="w-full max-w-6xl flex lg:flex-row items-center flex-col">
-          <div className="w-full md:w-2/3 pr-8 relative">
+        <div className="w-full max-w-6xl flex lg:flex-row items-start flex-col gap-8">
+          <div className="w-full lg:w-2/3 flex flex-col">
             <motion.div
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -75,6 +76,16 @@ export default function Home() {
             >
               Cloud Native Director of Platform
             </motion.h2>
+            
+            {/* Blog Preview Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mb-8"
+            >
+              <BlogPreview />
+            </motion.div>
           </div>
           <div className="w-full lg:w-1/3 pl-8">
             <motion.div
