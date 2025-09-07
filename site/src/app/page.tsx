@@ -36,7 +36,7 @@ const skills = [
 const additionalSkills = [
   { name: "Platform Engineering", value: 95, icon: <FaRocket /> },
   { name: "Cloud Architecture", value: 90, icon: <FaCloud /> },
-  { name: "Observability", value: 88, icon: <FaEye /> },
+  { name: "Observability", value: 100, icon: <FaEye /> },
   { name: "CI/CD Pipelines", value: 85, icon: <FaCogs /> },
   { name: "Infrastructure as Code", value: 92, icon: <FaCode /> },
   { name: "Site Reliability Engineering", value: 87, icon: <FaShieldAlt /> },
@@ -62,16 +62,24 @@ export default function Home() {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex justify-center lg:justify-start"
+                className="flex flex-col items-center lg:items-start"
               >
                 <Image
                   src="/images/pfp.jpg"
                   alt="Dean van Zyl"
                   width={280}
                   height={280}
-                  className="rounded-full border-4 border-amber-500/30 shadow-2xl"
+                  className="rounded-full border-4 border-amber-500/30 shadow-2xl mb-4"
                   priority
                 />
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="text-lg text-slate-400 font-medium text-center lg:text-left"
+                >
+                  Cloud Native Director of Platform
+                </motion.p>
               </motion.div>
               
               {/* Middle - Name and Info */}
