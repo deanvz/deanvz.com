@@ -2,116 +2,91 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import VantaBackground from "../../components/VantaBackground";
+import { FaArrowLeft, FaSearch } from "react-icons/fa";
+import BlogCard from "@/components/BlogCard";
+import VantaBackground from "@/components/VantaBackground";
+import BuyMeACoffee from "@/components/BuyMeACoffee";
 import blogPosts from "../../static/blog_posts.json";
-import { FaArrowLeft } from "react-icons/fa";
 
 export default function Blog() {
   return (
-    <div className="min-h-screen relative">
+    <div className="relative min-h-screen">
       <VantaBackground />
-      <div className="relative z-10 min-h-screen bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-indigo-900/20">
-        <div className="container mx-auto px-4 py-8">
+      
+      {/* Buy Me a Coffee */}
+      <BuyMeACoffee />
+      
+      <div className="relative z-10 min-h-screen">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-8"
+            transition={{ duration: 0.8 }}
+            className="mb-12"
           >
-            <div className="flex justify-start mb-6">
-              <Link href="/">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 border-2 border-white/20 shadow-2xl"
-                >
-                  <FaArrowLeft className="w-4 h-4" />
-                  Back to Home
-                </motion.div>
-              </Link>
-            </div>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors mb-8 group"
+            >
+              <FaArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back to Home
+            </Link>
             
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-2xl p-8 max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <div className="text-center">
+              <h1 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
                 Dean&apos;s Blog
               </h1>
-              <p className="text-xl text-gray-300">
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
                 Insights on cloud architecture, platform engineering, and modern development practices
               </p>
             </div>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid gap-6">
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative max-w-md mx-auto mb-12"
+          >
+            <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <input
+              type="text"
+              placeholder="Search articles..."
+              className="w-full pl-12 pr-4 py-3 bg-slate-800/30 backdrop-blur-sm border border-slate-600/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 transition-all"
+            />
+          </motion.div>
+
+          {/* Blog Posts Grid */}
+          {blogPosts.length > 0 ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+            >
               {blogPosts.map((post, index) => (
-                <motion.div
-                  key={post.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-2xl p-6 hover:bg-slate-700/50 transition-all duration-300"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="bg-gradient-to-r from-amber-500 to-orange-600 text-white text-sm font-bold px-3 py-1 rounded-full">
-                      {post.category}
-                    </span>
-                    <span className="text-gray-400 text-sm">{post.readingTime}</span>
-                  </div>
-                  
-                  <h2 className="text-2xl font-bold text-white mb-3 hover:text-amber-400 transition-colors">
-                    {post.title}
-                  </h2>
-                  
-                  <p className="text-gray-300 mb-4 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-slate-700/50 text-amber-400 text-xs px-2 py-1 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-gray-400">
-                      By {post.author} • {new Date(post.date).toLocaleDateString()}
-                    </div>
-                    
-                    <Link href={`/blog/${post.id}`}>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200"
-                      >
-                        Read Article
-                      </motion.button>
-                    </Link>
-                  </div>
-                </motion.div>
+                <BlogCard key={post.id} post={post} index={index} />
               ))}
-            </div>
-            
-            {blogPosts.length === 0 && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-center py-16"
-              >
-                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-2xl p-8">
-                  <h3 className="text-xl font-bold text-gray-300 mb-2">Coming Soon</h3>
-                  <p className="text-gray-400">
-                    New articles are being written. Check back soon for insights on cloud architecture and platform engineering!
-                  </p>
-                </div>
-              </motion.div>
-            )}
-          </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-center py-20"
+            >
+              <div className="glass-dark rounded-2xl p-12 max-w-md mx-auto">
+                <h3 className="text-2xl font-bold text-slate-200 mb-4">
+                  Coming Soon
+                </h3>
+                <p className="text-slate-400 leading-relaxed">
+                  New articles are being written. Check back soon for insights on cloud architecture and platform engineering!
+                </p>
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
     </div>

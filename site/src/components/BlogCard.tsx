@@ -57,11 +57,13 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
         </div>
 
         {/* Title */}
-        <h2 className={`font-bold text-white mb-3 group-hover:text-amber-400 transition-colors ${
-          post.featured ? "text-2xl md:text-3xl" : "text-xl"
-        }`}>
-          {post.title}
-        </h2>
+        <Link href={`/blog/${post.id}`}>
+          <h2 className={`font-bold text-white mb-3 group-hover:text-amber-400 transition-colors cursor-pointer ${
+            post.featured ? "text-2xl md:text-3xl" : "text-xl"
+          }`}>
+            {post.title}
+          </h2>
+        </Link>
 
         {/* Excerpt */}
         <p className={`text-gray-300 mb-4 leading-relaxed ${

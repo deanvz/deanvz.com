@@ -1,190 +1,173 @@
 "use client";
 
 import { motion } from "framer-motion";
-import SocialLinks from "../components/SocialLinks";
-import VantaBackground from "../components/VantaBackground";
 import Image from "next/image";
 import Link from "next/link";
-import profilePicture from "@/images/pfp.jpg";
-import {
-  SiKubernetes,
-  SiGrafana,
-  SiDocker,
-  SiAmazonwebservices,
-  SiGooglecloud,
-  SiTerraform,
-  SiGithub,
-  SiApachesuperset,
+import { 
+  FaDocker, 
+  FaAws,
+  FaRocket,
+  FaCloud,
+  FaEye,
+  FaCogs,
+  FaCode,
+  FaShieldAlt
+} from "react-icons/fa";
+import { 
+  SiKubernetes, 
+  SiPrometheus, 
+  SiGrafana, 
+  SiTerraform
 } from "react-icons/si";
-import { FaCode, FaCertificate, FaBook, FaNetworkWired, FaDatabase } from "react-icons/fa";
-import { VscAzure } from "react-icons/vsc";
-import { Badge } from "@/components/ui/badge";
+import VantaBackground from "@/components/VantaBackground";
+import SkillWheel from "@/components/SkillWheel";
+import SocialLinks from "@/components/SocialLinks";
+import BuyMeACoffee from "@/components/BuyMeACoffee";
 
-const skillData = [
-  { name: "Kubernetes", value: 90, icon: <SiKubernetes className="w-5 h-5" /> },
-  { name: "AWS", value: 90, icon: <SiAmazonwebservices className="w-5 h-5" /> },
-  { name: "Observability", value: 100, icon: <SiGrafana className="w-5 h-5" /> },
-  { name: "Leadership", value: 95, icon: <FaCode className="w-5 h-5" /> },
-  { name: "Cloud Architect", value: 90, icon: <FaCertificate className="w-5 h-5" /> },
-  { name: "Infrastructure as Code", value: 85, icon: <SiTerraform className="w-5 h-5" /> },
+const skills = [
+  { name: "Kubernetes", icon: <SiKubernetes />, value: 20 },
+  { name: "AWS", icon: <FaAws />, value: 25 },
+  { name: "Docker", icon: <FaDocker />, value: 15 },
+  { name: "Terraform", icon: <SiTerraform />, value: 18 },
+  { name: "Prometheus", icon: <SiPrometheus />, value: 12 },
+  { name: "Grafana", icon: <SiGrafana />, value: 10 },
 ];
 
-const otherSkills = [
-  { name: "Docker", icon: <SiDocker className="w-4 h-4" /> },
-  { name: "Azure", icon: <VscAzure className="w-4 h-4" /> },
-  { name: "GCP", icon: <SiGooglecloud className="w-4 h-4" /> },
-  { name: "SuperSet", icon: <SiApachesuperset className="w-4 h-4" /> },
-  { name: "GitHub", icon: <SiGithub className="w-4 h-4" /> },
-  { name: "Networking", icon: <FaNetworkWired className="w-4 h-4" /> },
-  { name: "BigData", icon: <FaDatabase className="w-4 h-4" /> },
+const additionalSkills = [
+  { name: "Platform Engineering", value: 95, icon: <FaRocket /> },
+  { name: "Cloud Architecture", value: 90, icon: <FaCloud /> },
+  { name: "Observability", value: 88, icon: <FaEye /> },
+  { name: "CI/CD Pipelines", value: 85, icon: <FaCogs /> },
+  { name: "Infrastructure as Code", value: 92, icon: <FaCode /> },
+  { name: "Site Reliability Engineering", value: 87, icon: <FaShieldAlt /> },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <>
       <VantaBackground />
-      <main className="flex-grow flex flex-col items-center justify-center p-4 relative z-10">
-        <div className="w-full max-w-6xl flex lg:flex-row items-start flex-col gap-8">
-          <div className="w-full lg:w-2/3 flex flex-col">
-            <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8 flex justify-center relative"
-            >
+      <main className="relative">
+        {/* Social Links */}
+        <SocialLinks />
+        
+        {/* Buy Me a Coffee */}
+        <BuyMeACoffee />
+
+        {/* Hero Section */}
+        <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-3 gap-8 items-start">
+              {/* Left side - Profile Picture */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="relative"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="flex justify-center lg:justify-start"
               >
                 <Image
-                  src={profilePicture}
+                  src="/images/pfp.jpg"
                   alt="Dean van Zyl"
-                  width={290}
-                  height={290}
-                  className="rounded-full shadow-lg w-[290px] h-[290px]"
+                  width={280}
+                  height={280}
+                  className="rounded-full border-4 border-amber-500/30 shadow-2xl"
                   priority
                 />
-                {/* Blog Icon */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1 }}
-                  className="absolute -top-2 -right-2 group"
-                >
-                  <Link href="/blog">
-                    <motion.div
-                      whileHover={{ scale: 1.2 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 p-4 rounded-full shadow-2xl cursor-pointer transition-all duration-200 border-2 border-white/20"
-                    >
-                      <FaBook className="w-6 h-6 text-white" />
-                    </motion.div>
-                    {/* Tooltip */}
-                    <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                      Read my blog
-                    </div>
-                  </Link>
-                </motion.div>
               </motion.div>
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-4xl font-bold mb-2 text-center"
-            >
-              Dean van Zyl
-            </motion.h1>
-            <motion.h2
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-2xl mb-8 text-center"
-            >
-              Cloud Native Director of Platform
-            </motion.h2>
-          </div>
-          <div className="w-full lg:w-1/3 pl-8">
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="w-full"
-            >
-              <div>
-                <h2 className="text-2xl font-bold my-4">About Me</h2>
-                <p>
+              
+              {/* Middle - Name and Info */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-center lg:text-left"
+              >
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+                  Dean van Zyl
+                </h1>
+                <p className="text-base sm:text-lg text-slate-300 mb-6 leading-relaxed">
                   An Architect of efficiency, building robust scalable Platforms that empower innovation and accelerates delivery.
                 </p>
-                <h2 className="text-2xl font-bold my-4">Skills</h2>
-                <div className="grid grid-cols-2 gap-3 w-full">
-                  {skillData.map((skill, index) => (
+                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8">
+                  <Link 
+                    href="/blog"
+                    className="glass-dark px-6 py-3 rounded-lg text-amber-400 hover:text-amber-300 font-semibold transition-all duration-300 hover:scale-105 border border-amber-500/20 hover:border-amber-500/40 text-sm"
+                  >
+                    View Blog
+                  </Link>
+                  <motion.a 
+                    href="https://www.credly.com/users/deanvz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="glass-dark px-6 py-3 rounded-lg text-slate-300 hover:text-white font-semibold transition-all duration-300 border border-slate-500/20 hover:border-slate-400/40 text-sm"
+                  >
+                    Certifications
+                  </motion.a>
+                </div>
+                
+                {/* Technologies & Tools Icons */}
+                <div className="mt-6">
+                  <h4 className="text-sm font-semibold text-slate-400 mb-3 text-center lg:text-left">Technologies & Tools</h4>
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                    {skills.map((skill, index) => (
+                      <motion.div
+                        key={skill.name}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        className="glass-dark p-3 rounded-lg flex items-center justify-center hover:border-amber-500/30 transition-all duration-300"
+                        title={skill.name}
+                      >
+                        <div className="text-2xl text-amber-400">
+                          {skill.icon}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Right side - Compact Skills Cards */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="space-y-3"
+              >
+                <h3 className="text-lg font-bold text-slate-100 mb-3 text-center lg:text-left">
+                  Core Skills
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {additionalSkills.map((skill, index) => (
                     <motion.div
                       key={skill.name}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                      className="bg-slate-700/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4 hover:bg-slate-600/50 transition-all duration-300"
+                      className="glass-dark p-4 rounded-lg flex flex-col items-center text-center gap-2"
                     >
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="text-amber-400">
-                          {skill.icon}
-                        </div>
-                        <h3 className="font-semibold text-sm text-gray-100">{skill.name}</h3>
+                      <div className="text-amber-400 text-2xl">
+                        {skill.icon}
                       </div>
-                      
-                      {/* Simplified display without percentages */}
-                      <div className="relative">
-                        <div className="w-full bg-slate-800 rounded-full h-2">
-                          <motion.div
-                            className="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full"
-                            initial={{ width: 0 }}
-                            animate={{ width: `${skill.value}%` }}
-                            transition={{ duration: 1.5, delay: 1 + index * 0.1, ease: "easeOut" }}
-                          />
-                        </div>
+                      <span className="text-slate-200 font-medium text-xs leading-tight">{skill.name}</span>
+                      <div className="w-full bg-slate-700 rounded-full h-1">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.value}%` }}
+                          transition={{ duration: 1, delay: 1 + index * 0.1 }}
+                          className="h-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-600"
+                        />
                       </div>
                     </motion.div>
                   ))}
                 </div>
-                <h2 className="text-lg font-bold my-4">Other Skills</h2>
-                <div className="flex flex-row flex-wrap gap-2 w-full">
-                  {otherSkills.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 1.5 + index * 0.1 }}
-                    >
-                      <Badge className="gap-2 bg-slate-700/50 border border-slate-600/30 text-gray-100 hover:bg-slate-600/50 transition-colors duration-200">
-                        <span className="text-amber-400">{skill.icon}</span>
-                        {skill.name}
-                      </Badge>
-                    </motion.div>
-                  ))}
-                </div>
-                <h2 className="text-lg font-bold my-4">Certifications</h2>
-                <motion.a
-                  href="https://www.credly.com/users/dean-van-zyl/badges#credly"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 border-2 border-white/20 shadow-2xl"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 2 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaCertificate className="w-4 h-4" />
-                  View My Certifications
-                </motion.a>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
-        </div>
+        </section>
       </main>
-      <SocialLinks />
-    </div>
+    </>
   );
 }

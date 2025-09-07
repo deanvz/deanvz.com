@@ -9,7 +9,6 @@ import { FaXTwitter } from "react-icons/fa6";
 export default function BlogFooter({
   author,
   about,
-  coffeeSlug,
   imageUrl,
   className,
   githubUrl,
@@ -19,7 +18,6 @@ export default function BlogFooter({
   author: string;
   about: string;
   imageUrl: string;
-  coffeeSlug: string;
   className?: string;
   githubUrl?: string;
   linkedinUrl?: string;
@@ -82,7 +80,7 @@ export default function BlogFooter({
           <ArrowLeftIcon className="w-4 h-4" />
           Back to blogs
         </Link>
-        <BuyMeACoffee slug={coffeeSlug} />
+        <BuyMeACoffee />
       </div>
     </div>
   );
