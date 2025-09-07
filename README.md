@@ -1,5 +1,3 @@
-# deanvz.com
-
 Personal website and blog for Dean van Zyl - Cloud Native Director of Platform
 
 🌐 **Live Site**: [deanvz.com](https://deanvz.com)
@@ -34,7 +32,7 @@ This is my personal website showcasing my experience in cloud-native platforms, 
 
 - **Kubernetes** (90%) - Container orchestration and cluster management
 - **AWS** (90%) - Cloud architecture and services
-- **Observability** (85%) - Monitoring, logging, and tracing systems
+- **Observability** (100%) - Monitoring, logging, and tracing systems
 - **Leadership** (95%) - Technical team leadership and mentoring
 - **Cloud Architecture** (90%) - Designing scalable cloud-native solutions
 - **Infrastructure as Code** (85%) - Terraform, automation, and GitOps
@@ -88,4 +86,3 @@ site/
 ---
 
 Built with ❤️ using modern web technologies and deployed on Cloudflare's edge network for optimal performance worldwide.
-# Test deployment with Google Analytics environment variable
