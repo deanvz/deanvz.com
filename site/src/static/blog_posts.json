@@ -2,6 +2,13 @@
   {
     "id": "observability-my-opinion-at-least",
     "title": "Observability | My opinion at least",
-    "date": "2025-09-06"
+    "date": "2025-09-06",
+    "excerpt": "Deep dive into modern observability practices, monitoring strategies, and why traditional logging isn't enough for cloud-native applications.",
+    "readingTime": "8 min read",
+    "tags": ["Observability", "DevOps", "Monitoring", "Cloud Native"],
+    "featured": true,
+    "category": "Technical",
+    "author": "Dean van Zyl",
+    "lastModified": "2025-09-06"
   }
 ]
